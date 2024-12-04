@@ -1,8 +1,10 @@
 #include <iostream>
 #include <windows.h>
+#include "ConsoleRender.h"
 using namespace std;
 
 int main() {
-    cout << "hello World!";
+    ConsoleRender render;
+    render.startMenu();
     return 0;
 }
