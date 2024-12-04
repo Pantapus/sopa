@@ -8,12 +8,12 @@ ConsoleRender::ConsoleRender() {
 }
 
 void ConsoleRender::startMenu() {
-    string menu = getMenu();
+    string menu = getAsset("startMenu");
     cout << menu;
 }
 
-string ConsoleRender::getMenu() {
-    ifstream file("../assets/startMenu.txt");
+string ConsoleRender::getAsset(string asset) {
+    ifstream file("../assets/" + asset + ".txt");
     if (!file.is_open()) {
         return "error...";
     }

@@ -7,6 +7,6 @@ public:
     ConsoleRender();
     void startMenu();
 private:
-    string getMenu();
+    string getAsset(string asset);
 };
 #endif
