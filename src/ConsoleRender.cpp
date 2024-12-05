@@ -13,7 +13,7 @@ void ConsoleRender::startMenu() {
 }
 
 string ConsoleRender::getAsset(string asset) {
-    ifstream file("../assets/" + asset + ".txt");
+    ifstream file("assets/" + asset + ".txt");
     if (!file.is_open()) {
         return "error...";
     }
