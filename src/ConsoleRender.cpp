@@ -1,15 +1,20 @@
-#include "ConsoleRender.h"
+#include "ConsoleRender.hpp"
 #include <fstream>
 #include <iostream>
 #include <sstream>
 using namespace std;
 
-ConsoleRender::ConsoleRender() { 
+ConsoleRender::ConsoleRender() {
 }
 
-void ConsoleRender::startMenu() {
-    string menu = getAsset("startMenu");
+void ConsoleRender::Menu(string heading) {
+    string menu = getAsset(heading);
     cout << menu;
+}
+
+void ConsoleRender::update() {
+    system("cls");
+
 }
 
 string ConsoleRender::getAsset(string asset) {

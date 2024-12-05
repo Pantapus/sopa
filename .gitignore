@@ -38,3 +38,5 @@
 .history/
 
 /dagbok/*
+
+/src/legacy/*
