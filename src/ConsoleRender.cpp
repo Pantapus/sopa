@@ -4,11 +4,9 @@
 #include <sstream>
 using namespace std;
 
-ConsoleRender::ConsoleRender() {
-}
-
 void ConsoleRender::Menu(string heading) {
     string menu = getAsset(heading);
+    system("cls");
     cout << menu;
 }
 
