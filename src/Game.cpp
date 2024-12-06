@@ -15,7 +15,6 @@ Game::Game() {
 void Game::gameLoop() {
     while(running) {
         draw();
-        playerInput();
         logic();
     }
 }
@@ -24,11 +23,7 @@ void Game::draw() {
     render.update();
 }
 
-void Game::playerInput() {
-    Key pressedKey = input.getKey();
-    if (pressedKey == ESCAPE) running = false;
-}
-
 void Game::logic() {
-
+    Key playerAction = input.getKey();
+    if (playerAction == ESCAPE) running = false;
 }
