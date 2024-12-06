@@ -25,7 +25,8 @@ void Game::draw() {
 }
 
 void Game::playerInput() {
-
+    Key pressedKey = input.getKey();
+    if (pressedKey == ESCAPE) running = false;
 }
 
 void Game::logic() {
