@@ -10,5 +10,14 @@ void Menu::startMenu() {
 }
 
 int Menu::pauseMenu() {
-    return 1;
+    render.Menu("pauseMenu");
+    Sleep(1000);
+    while(true) {
+        switch (input.getKey()) {
+            case ONE:
+                return 1;
+            case TWO:
+                return 2;
+        }
+    }
 }

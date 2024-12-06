@@ -3,8 +3,8 @@
 
 bool running;
 ConsoleRender render;
-Menu menu(render, input);
 Input input;
+Menu menu(render, input);
 
 Game::Game() {
     menu.startMenu();
@@ -34,4 +34,5 @@ void Game::logic() {
 
 void Game::pause() {
     int choice = menu.pauseMenu();
+    if (choice == 2) running = false;
 }

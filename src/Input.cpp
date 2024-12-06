@@ -2,6 +2,16 @@
 #include <windows.h>
 
 Key Input::getKey() {
+    for (int i = 0x31; i <= 0x32; i++) { // hex för 0-9 = 0x30-0x39
+        if (GetAsyncKeyState(i) & 0x8000) {
+            switch(i) {
+                case 0x31:
+                    return ONE;
+                case 0x32:
+                    return TWO;
+            }
+        }
+    }
     if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
         return ENTER;
     }

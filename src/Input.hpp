@@ -4,7 +4,9 @@ enum Key {
     NO_KEY,
     ENTER,
     ESCAPE,
-    SPACE
+    SPACE,
+    ONE,
+    TWO
 };
 
 class Input {
