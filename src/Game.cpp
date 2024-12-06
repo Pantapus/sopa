@@ -3,10 +3,10 @@
 
 bool running;
 ConsoleRender render;
+Menu menu(render, input);
 Input input;
 
 Game::Game() {
-    Menu menu(render, input);
     menu.startMenu();
     running = true;
     gameLoop();
@@ -25,5 +25,13 @@ void Game::draw() {
 
 void Game::logic() {
     Key playerAction = input.getKey();
-    if (playerAction == ESCAPE) running = false;
+    switch (playerAction) {
+        case ESCAPE:
+            pause();
+            break;
+    }
+}
+
+void Game::pause() {
+    int choice = menu.pauseMenu();
 }

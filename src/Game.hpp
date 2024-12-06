@@ -7,4 +7,5 @@ class Game {
         void gameLoop();
         void draw();
         void logic();
+        void pause();
 };
