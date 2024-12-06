@@ -1,5 +1,4 @@
 #include "Menu.hpp"
-#include <iostream>
 #include <synchapi.h>
 
 Menu::Menu(ConsoleRender& render, Input& input) : render(render), input(input) {}
