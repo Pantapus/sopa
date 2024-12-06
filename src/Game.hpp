@@ -5,4 +5,7 @@ class Game {
         Game();
     private:
         void gameLoop();
+        void draw();
+        void playerInput();
+        void logic();
 };

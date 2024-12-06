@@ -11,8 +11,9 @@ void ConsoleRender::Menu(string heading) {
 }
 
 void ConsoleRender::update() {
+    string map = getAsset("map");
     system("cls");
-
+    cout << map;
 }
 
 string ConsoleRender::getAsset(string asset) {
