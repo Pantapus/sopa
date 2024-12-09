@@ -9,14 +9,25 @@ Key Input::getKey() {
                     return ONE;
                 case 0x32:
                     return TWO;
+                case 0x33:
+                    return THREE;
             }
         }
     }
+    if (GetAsyncKeyState('W') & 0x8000) {
+        return UP;
+    }
+    if (GetAsyncKeyState('A') & 0x8000) {
+        return LEFT;
+    }
+    if (GetAsyncKeyState('S') & 0x8000) {
+        return DOWN;
+    }
+    if (GetAsyncKeyState('D') & 0x8000) {
+        return RIGHT;
+    }
     if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
         return ENTER;
-    }
-    if (GetAsyncKeyState(VK_SPACE) & 0x8000) {
-        return SPACE;
     }
     if (GetAsyncKeyState(VK_ESCAPE) & 0x8000) {
         return ESCAPE;

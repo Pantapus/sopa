@@ -2,11 +2,15 @@
 
 enum Key {
     NO_KEY,
-    ENTER,
-    ESCAPE,
-    SPACE,
     ONE,
-    TWO
+    TWO,
+    THREE,
+    UP,
+    LEFT,
+    DOWN,
+    RIGHT,
+    ENTER,
+    ESCAPE
 };
 
 class Input {
