@@ -1,5 +1,8 @@
 #include "Game.hpp"
 #include "Menu.hpp"
+#include <chrono>
+#include <synchapi.h>
+#include <iostream>
 
 bool running;
 ConsoleRender render;
@@ -13,9 +16,17 @@ Game::Game() {
 }
 
 void Game::gameLoop() {
+    constexpr int desiredFramedelay = 1000 / 30; // max 30 fps
+    auto lastTime = std::chrono::high_resolution_clock::now();
     while(running) {
         draw();
         logic();
+        auto currentTime = std::chrono::high_resolution_clock::now();
+        auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastTime).count();
+        if (elapsedTime < desiredFramedelay) {
+            Sleep(desiredFramedelay - elapsedTime);
+        }
+        lastTime = std::chrono::high_resolution_clock::now();
     }
 }
 
