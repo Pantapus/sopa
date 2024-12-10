@@ -1,13 +1,12 @@
 #ifndef CONSOLERENDER_H
 #define CONSOLERENDER_H
 #include <string>
-using namespace std;
 
 class ConsoleRender {
 public:
-    void Menu(string);
+    void Menu(std::string);
     void update();
 private:
-    string getAsset(string);
+    std::string getAsset(std::string);
 };
 #endif

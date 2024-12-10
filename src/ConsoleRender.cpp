@@ -2,7 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
-using namespace std;
+using std::cout, std::string;
 
 void ConsoleRender::Menu(string heading) {
     string menu = getAsset(heading);
@@ -17,12 +17,12 @@ void ConsoleRender::update() {
 }
 
 string ConsoleRender::getAsset(string asset) {
-    ifstream file("assets/" + asset + ".txt");
+    std::ifstream file("assets/" + asset + ".txt");
     if (!file.is_open()) {
         return "error...";
     }
 
-    ostringstream buffer;
+    std::ostringstream buffer;
     buffer << file.rdbuf();
     return buffer.str();
 }
