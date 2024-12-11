@@ -5,13 +5,13 @@ Menu::Menu(ConsoleRender& render, Input& input) : render(render), input(input) {
 
 void Menu::startMenu() {
     render.Menu("startMenu");
-    Sleep(1000);
+    Sleep(500);
     while (input.getKey() != ENTER) {}
 }
 
 int Menu::pauseMenu() {
     render.Menu("pauseMenu");
-    Sleep(1000);
+    Sleep(500);
     while(true) {
         switch (input.getKey()) {
             case ONE:
