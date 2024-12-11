@@ -3,7 +3,6 @@
 #include <iostream>
 #include <sstream>
 #include <windows.h>
-
 using std::cout, std::string;
 
 ConsoleRender::ConsoleRender(Compositor& compositor) : compositor(compositor) {
@@ -50,5 +49,7 @@ void ConsoleRender::update() {
 }
 
 void ConsoleRender::setCursorPosition(int x, int y) {
-
+    HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+    COORD position = {static_cast<SHORT>(x), static_cast<SHORT>(y)};
+    SetConsoleCursorPosition(consoleHandle, position);
 }
