@@ -1,5 +1,7 @@
 # pragma once
 
+#include <array>
+
 enum cellState {
     EMPTY,
     WALL,
@@ -8,11 +10,10 @@ enum cellState {
     TREASURE
 };
 
-class Compositor {
-    private:
+class Compositor { 
+    public:
         static const int ROWS = 25;
         static const int COLS = 50;
-    public:
-        cellState gameWorld[ROWS][COLS];
+        std::array<std::array<cellState, COLS>, ROWS> gameWorld;
         Compositor();
 };

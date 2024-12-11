@@ -13,9 +13,20 @@ void ConsoleRender::Menu(string heading) {
 }
 
 void ConsoleRender::update() {
-    string map = getAsset("map");
     system("cls");
-    cout << map;
+    for (int i = 0; i < compositor.ROWS; i++) {
+        for (int j = 0; j < compositor.COLS; j++) {
+            switch (compositor.gameWorld[i][j]) {
+            case WALL:
+                cout << "###";
+                break;
+            case EMPTY:
+                cout << "   ";
+                break;
+            }
+        }
+        cout << "\n";
+    }
 }
 
 string ConsoleRender::getAsset(string asset) {

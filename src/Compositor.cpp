@@ -3,6 +3,7 @@
 Compositor::Compositor() {
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
+            gameWorld[i][j] = EMPTY;
             if ((i == 0) || (j == 0)) {
                 gameWorld[i][j] = WALL;
             }
