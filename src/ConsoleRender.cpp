@@ -2,9 +2,18 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <windows.h>
+
 using std::cout, std::string;
 
-ConsoleRender::ConsoleRender(Compositor& compositor) : compositor(compositor) {}
+ConsoleRender::ConsoleRender(Compositor& compositor) : compositor(compositor) {
+    HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_CURSOR_INFO cursorInfo;
+
+    GetConsoleCursorInfo(consoleHandle, &cursorInfo);
+    cursorInfo.bVisible = false;
+    SetConsoleCursorInfo(consoleHandle, &cursorInfo);
+}
 
 void ConsoleRender::Menu(string heading) {
     string menu = getAsset(heading);
