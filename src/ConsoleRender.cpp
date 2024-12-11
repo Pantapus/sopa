@@ -21,6 +21,17 @@ void ConsoleRender::Menu(string heading) {
     cout << menu;
 }
 
+string ConsoleRender::getAsset(string asset) {
+    std::ifstream file("assets/" + asset + ".txt");
+    if (!file.is_open()) {
+        return "error...";
+    }
+
+    std::ostringstream buffer;
+    buffer << file.rdbuf();
+    return buffer.str();
+}
+
 void ConsoleRender::update() {
     system("cls");
     for (int i = 0; i < compositor.ROWS; i++) {
@@ -38,13 +49,6 @@ void ConsoleRender::update() {
     }
 }
 
-string ConsoleRender::getAsset(string asset) {
-    std::ifstream file("assets/" + asset + ".txt");
-    if (!file.is_open()) {
-        return "error...";
-    }
+void ConsoleRender::setCursorPosition(int x, int y) {
 
-    std::ostringstream buffer;
-    buffer << file.rdbuf();
-    return buffer.str();
 }

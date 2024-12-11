@@ -11,5 +11,6 @@ public:
 private:
     std::string getAsset(std::string);
     Compositor& compositor;
+    void setCursorPosition(int x, int y);
 };
 #endif
