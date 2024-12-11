@@ -5,7 +5,8 @@
 #include <iostream>
 
 bool running;
-ConsoleRender render;
+Compositor compositor;
+ConsoleRender render(compositor);
 Input input;
 Menu menu(render, input);
 

@@ -4,6 +4,8 @@
 #include <sstream>
 using std::cout, std::string;
 
+ConsoleRender::ConsoleRender(Compositor& compositor) : compositor(compositor) {}
+
 void ConsoleRender::Menu(string heading) {
     string menu = getAsset(heading);
     system("cls");
