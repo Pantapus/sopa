@@ -7,7 +7,7 @@ Compositor::Compositor() {
             if ((i == 0) || (j == 0)) {
                 gameWorld[i][j] = WALL;
             }
-            if ((i == ROWS) || (j == COLS)) {
+            if ((i == (ROWS - 1)) || (j == (COLS - 1))) {
                 gameWorld[i][j] = WALL;
             }
         }
