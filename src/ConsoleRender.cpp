@@ -6,7 +6,6 @@
 using std::cout, std::string;
 
 ConsoleRender::ConsoleRender(Compositor& compositor) : compositor(compositor) {
-    HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
     CONSOLE_CURSOR_INFO cursorInfo;
     GetConsoleCursorInfo(consoleHandle, &cursorInfo);
 
@@ -35,7 +34,7 @@ void ConsoleRender::update() {
     static const char* symbols[] = {" ", "#", "@", "8", "$"};
     for (int i = 0; i < compositor.ROWS; i++) {
         for (int j = 0; j < compositor.COLS; j++) {
-            if (previousFrame[i][j] != compositor.gameWorld[i][j]) {
+            if (getCharAtPosition(j, i) != compositor.gameWorld[i][j]) {
                 setCursorPosition(j, i);
                 cout << symbols[compositor.gameWorld[i][j]];
                 previousFrame[i][j] = compositor.gameWorld[i][j];
@@ -45,7 +44,14 @@ void ConsoleRender::update() {
 }
 
 void ConsoleRender::setCursorPosition(int x, int y) {
-    HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
     COORD position = {static_cast<SHORT>(x), static_cast<SHORT>(y)};
     SetConsoleCursorPosition(consoleHandle, position);
+}
+
+char ConsoleRender::getCharAtPosition(int x, int y) {
+    char character;
+    COORD position = {static_cast<SHORT>(x), static_cast<SHORT>(y)};
+    DWORD charsRead;
+    ReadConsoleOutputCharacter(consoleHandle, &character, 1, position, &charsRead);
+    return character;
 }
