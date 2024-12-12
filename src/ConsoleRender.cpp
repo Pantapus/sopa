@@ -32,7 +32,7 @@ string ConsoleRender::getAsset(string asset) {
 }
 
 void ConsoleRender::update() {
-    static const char* symbols[] = {" ", "#"};
+    static const char* symbols[] = {" ", "#", "@", "8", "$"};
     system("cls");
     for (int i = 0; i < compositor.ROWS; i++) {
         for (int j = 0; j < compositor.COLS; j++) {
