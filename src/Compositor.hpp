@@ -12,8 +12,8 @@ enum cellState {
 
 class Compositor { 
     public:
-        static const int ROWS = 10;
-        static const int COLS = 20;
+        static const int ROWS = 25;
+        static const int COLS = 50;
         std::array<std::array<cellState, COLS>, ROWS> gameWorld;
         Compositor();
 };

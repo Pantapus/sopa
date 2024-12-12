@@ -35,22 +35,13 @@ void ConsoleRender::update() {
     system("cls");
     for (int i = 0; i < compositor.ROWS; i++) {
         for (int j = 0; j < compositor.COLS; j++) {
-            char texture;
             switch (compositor.gameWorld[i][j]) {
             case WALL:
-                texture = '#';
+                cout << "#";
                 break;
             case EMPTY:
-                texture = ' ';
+                cout << " ";
                 break;
-            }
-            for (int m = 0; m < 4; m++) {
-                setCursorPosition((j*3)+m, (i*3));
-                cout << texture;
-                setCursorPosition((j*3)+m, (i*3)+1);
-                cout << texture;
-                setCursorPosition((j*3)+m, (i*3)+2);
-                cout << texture;
             }
         }
         cout << "\n";
