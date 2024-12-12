@@ -37,7 +37,6 @@ void ConsoleRender::update() {
             if (getCharAtPosition(j, i) != compositor.gameWorld[i][j]) {
                 setCursorPosition(j, i);
                 cout << symbols[compositor.gameWorld[i][j]];
-                previousFrame[i][j] = compositor.gameWorld[i][j];
             }
         }
     }
