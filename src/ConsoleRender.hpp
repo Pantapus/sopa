@@ -11,6 +11,7 @@ public:
 private:
     std::string getAsset(std::string);
     Compositor& compositor;
+    std::array<std::array<cellState, Compositor::COLS>, Compositor::ROWS> previousFrame;
     void setCursorPosition(int x, int y);
 };
 #endif
