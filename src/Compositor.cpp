@@ -17,7 +17,7 @@ void Compositor::setMap(std::string asset) {
         size_t col = 0;
         while (ss >> ch && col < COLS) {
             switch (ch) {
-                case ' ':
+                case '.':
                     gameWorld[row][col] = EMPTY;
                     break;
                 case '#':

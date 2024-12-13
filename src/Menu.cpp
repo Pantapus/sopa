@@ -16,7 +16,7 @@ int Menu::pauseMenu() {
             case TWO:
                 return 2;
             default:
-                return 0;
+                break;
         }
     }
 }
