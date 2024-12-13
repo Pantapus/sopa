@@ -7,6 +7,7 @@ class Menu {
         Menu(ConsoleRender& render, Input& input);
         void startMenu();
         int pauseMenu();
+        void error(const char*);
     private: 
         ConsoleRender& render;
         Input& input;

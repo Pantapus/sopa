@@ -1,6 +1,7 @@
 #include "Game.hpp"
 #include "Menu.hpp"
 #include <chrono>
+#include <exception>
 #include <synchapi.h>
 #include <iostream>
 
@@ -19,6 +20,13 @@ Game::Game() {
 void Game::gameLoop() {
     constexpr int desiredFramedelay = 1000 / 30; // max 30 fps
     auto lastTime = std::chrono::high_resolution_clock::now();
+
+    try { compositor.setMap("map1"); } catch (std::exception e) {
+        Sleep(1000);
+        menu.error(e.what());
+        running = false;
+    }
+    
     while(running) {
         draw();
         logic();

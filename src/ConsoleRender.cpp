@@ -31,12 +31,11 @@ string ConsoleRender::getAsset(string asset) {
 }
 
 void ConsoleRender::update() {
-    static const char* symbols[] = {" ", "#", "@", "8", "$"};
     for (int i = 0; i < compositor.ROWS; i++) {
         for (int j = 0; j < compositor.COLS; j++) {
             if (getCharAtPosition(j, i) != compositor.gameWorld[i][j]) {
                 setCursorPosition(j, i);
-                cout << symbols[compositor.gameWorld[i][j]];
+                cout << compositor.gameWorld[i][j];
             }
         }
     }
@@ -53,4 +52,9 @@ char ConsoleRender::getCharAtPosition(int x, int y) {
     DWORD charsRead;
     ReadConsoleOutputCharacter(consoleHandle, &character, 1, position, &charsRead);
     return character;
+}
+
+void ConsoleRender::printMessage(string message) {
+    system("cls");
+    cout << message;
 }

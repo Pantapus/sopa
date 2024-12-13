@@ -9,6 +9,7 @@ public:
     ConsoleRender(Compositor& compositor);
     void Menu(std::string);
     void update();
+    void printMessage(std::string message);
 private:
     std::string getAsset(std::string);
     Compositor& compositor;

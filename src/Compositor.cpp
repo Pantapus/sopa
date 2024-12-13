@@ -1,15 +1,43 @@
 #include "Compositor.hpp"
+#include <fstream>
+#include <sstream>
+#include <string>
 
-Compositor::Compositor() {
-    for (int i = 0; i < ROWS; i++) {
-        for (int j = 0; j < COLS; j++) {
-            gameWorld[i][j] = EMPTY;
-            if ((i == 0) || (j == 0)) {
-                gameWorld[i][j] = WALL;
+void Compositor::setMap(std::string asset) {
+    std::ifstream file("assets/" + asset + ".txt");
+    if (!file.is_open()) {
+        throw std::runtime_error("Failed to load " + asset);
+    }
+
+    std::string line;
+    size_t row = 0;
+    while (std::getline(file, line) && row < ROWS) {
+        std::stringstream ss(line);
+        char ch;
+        size_t col = 0;
+        while (ss >> ch && col < COLS) {
+            switch (ch) {
+                case ' ':
+                    gameWorld[row][col] = EMPTY;
+                    break;
+                case '#':
+                    gameWorld[row][col] = WALL;
+                    break;
+                case '@':
+                    gameWorld[row][col] = PLAYER;
+                    break;
+                case '8':
+                    gameWorld[row][col] = ENEMY;
+                    break;
+                case '$':
+                    gameWorld[row][col] = TREASURE;
+                    break;
+                default:
+                    gameWorld[row][col] = UNKNOWN;
+                    break;
             }
-            if ((i == (ROWS - 1)) || (j == (COLS - 1))) {
-                gameWorld[i][j] = WALL;
-            }
+            ++col;
         }
+        ++row;
     }
 }

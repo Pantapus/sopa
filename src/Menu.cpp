@@ -15,6 +15,15 @@ int Menu::pauseMenu() {
                 return 1;
             case TWO:
                 return 2;
+            default:
+                return 0;
         }
     }
+}
+
+void Menu::error(const char* error) {
+    std::string message(error);
+    message = message + "\n" + "press ENTER to close...";
+    render.printMessage(message);
+    while (input.getKey() != ENTER) {}
 }
