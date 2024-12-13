@@ -54,7 +54,7 @@ char ConsoleRender::getCharAtPosition(int x, int y) {
     return character;
 }
 
-void ConsoleRender::printMessage(string message) {
-    system("cls");
+void ConsoleRender::printMessageAt(string message, int x, int y) {
+    setCursorPosition(x, y);
     cout << message;
 }

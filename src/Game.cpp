@@ -37,7 +37,8 @@ void Game::gameLoop() {
         }
         lastTime = std::chrono::high_resolution_clock::now();
         auto totalTime = std::chrono::duration_cast<std::chrono::milliseconds>(lastTime - currentTime).count() + elapsedTime;
-        std::cout << (1000 / totalTime);
+        //std::cout << (1000 / totalTime);
+        render.printMessageAt(std::to_string(1000 / totalTime), 0, 25);
     }
 }
 

@@ -24,6 +24,6 @@ int Menu::pauseMenu() {
 void Menu::error(const char* error) {
     std::string message(error);
     message = message + "\n" + "press ENTER to close...";
-    render.printMessage(message);
+    render.printMessageAt(message, 0, 0);
     while (input.getKey() != ENTER) {}
 }
