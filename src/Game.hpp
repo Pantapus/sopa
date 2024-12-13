@@ -5,7 +5,6 @@ class Game {
         Game();
     private:
         void gameLoop();
-        void draw();
         void logic();
         void pause();
 };

@@ -28,7 +28,7 @@ void Game::gameLoop() {
     }
     
     while(running) {
-        draw();
+        render.update();
         logic();
         auto currentTime = std::chrono::high_resolution_clock::now();
         auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastTime).count();
@@ -39,10 +39,6 @@ void Game::gameLoop() {
         auto totalTime = std::chrono::duration_cast<std::chrono::milliseconds>(lastTime - currentTime).count() + elapsedTime;
         std::cout << (1000 / totalTime);
     }
-}
-
-void Game::draw() {
-    render.update();
 }
 
 void Game::logic() {
