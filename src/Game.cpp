@@ -3,7 +3,6 @@
 #include <chrono>
 #include <exception>
 #include <synchapi.h>
-#include <iostream>
 
 bool running;
 Compositor compositor;
