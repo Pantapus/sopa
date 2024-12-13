@@ -21,7 +21,7 @@ void Game::gameLoop() {
     constexpr int desiredFramedelay = 1000 / 30; // max 30 fps
     auto lastTime = std::chrono::high_resolution_clock::now();
 
-    try { compositor.setMap("map1"); } catch (std::exception e) {
+    try { compositor.setMap("map1"); } catch (const std::exception& e) {
         Sleep(1000);
         menu.error(e.what());
         running = false;
