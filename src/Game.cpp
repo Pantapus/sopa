@@ -43,6 +43,16 @@ void Game::gameLoop() {
 void Game::logic() {
     Key playerAction = input.getKey();
     switch (playerAction) {
+        case NO_KEY: break;
+        case ONE: break;
+        case TWO: break;
+        case THREE: break;
+        case UP:
+        case LEFT:
+        case DOWN:
+        case RIGHT:
+        case ENTER:
+        case SPACE:
         case ESCAPE:
             pause();
             break;
