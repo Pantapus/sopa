@@ -25,6 +25,7 @@ void Compositor::setMap(std::string asset) {
                     break;
                 case '@':
                     gameWorld[row][col] = PLAYER;
+                    player = new Player(row, col);
                     break;
                 case '8':
                     gameWorld[row][col] = ENEMY;
