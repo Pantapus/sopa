@@ -1,15 +1,16 @@
 # pragma once
 
-class Agent {
-    public:
-        struct Position {
+struct Position {
             int x;
             int y;
             Position(int x, int y) : x(x), y(y) {}
         };
+
+class Agent {
+    public:
         Position position;
         Agent(int x, int y) : position(x, y) {}
-        void MoveTo(Position position);
+        void MoveTo(Position& position);
 };
 
 class Enemy : public Agent {
