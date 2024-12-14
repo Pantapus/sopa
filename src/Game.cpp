@@ -47,12 +47,11 @@ void Game::logic() {
         case ONE: break;
         case TWO: break;
         case THREE: break;
-        case UP:
-        case LEFT:
-        case DOWN:
-        case RIGHT:
-        case ENTER:
-        case SPACE:
+        case UP: case LEFT: case DOWN: case RIGHT: // samma action för dessa cases
+            compositor.movePlayer(playerAction);
+            break;
+        case ENTER: break;
+        case SPACE: break;
         case ESCAPE:
             pause();
             break;
