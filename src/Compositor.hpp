@@ -2,7 +2,6 @@
 
 #include <array>
 #include <string>
-#include "Input.hpp"
 #include "Agent.hpp"
 
 enum cellState : char {
@@ -20,7 +19,7 @@ class Compositor {
         static const int COLS = 50;
         std::array<std::array<cellState, COLS>, ROWS> gameWorld;
         void setMap(std::string asset);
-        void movePlayer(Key& dir);
+        void movePlayer(int x, int y);
     private:
         Player* player;
 };

@@ -17,7 +17,7 @@ Game::Game() {
 }
 
 void Game::gameLoop() {
-    constexpr int desiredFramedelay = 1000 / 30; // max 30 fps
+    constexpr int desiredFramedelay = 1000 / 15; //max 15 fps
     auto lastTime = std::chrono::high_resolution_clock::now();
 
     try { compositor.setMap("map1"); } catch (const std::exception& e) {
@@ -47,8 +47,17 @@ void Game::logic() {
         case ONE: break;
         case TWO: break;
         case THREE: break;
-        case UP: case LEFT: case DOWN: case RIGHT: // samma action för dessa cases
-            compositor.movePlayer(playerAction);
+        case UP:
+            compositor.movePlayer(-1, 0);
+            break;
+        case LEFT:
+            compositor.movePlayer(0, -1);
+            break;
+        case DOWN:
+            compositor.movePlayer(1, 0);
+            break;
+        case RIGHT:
+            compositor.movePlayer(0, 1);
             break;
         case ENTER: break;
         case SPACE: break;

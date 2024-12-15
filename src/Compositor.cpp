@@ -42,3 +42,29 @@ void Compositor::setMap(std::string asset) {
         ++row;
     }
 }
+
+void Compositor::movePlayer(int x, int y) {
+    /*
+    Position* desiredPos;
+    switch (dir) {
+        case UP:
+            desiredPos = new Position(player->position.x++, player->position.y);
+            break;
+        case DOWN:
+            desiredPos = new Position(player->position.x--, player->position.y);
+            break;
+        case LEFT:
+            desiredPos = new Position(player->position.x, player->position.y--);
+            break;
+        case RIGHT:
+            desiredPos = new Position(player->position.x, player->position.y++);
+            break;
+    }
+    */
+    Position desiredPos((player->position.x + x), (player->position.y + y));
+    if (gameWorld[desiredPos.x][desiredPos.y] == EMPTY) {
+        gameWorld[player->position.x][player->position.y] = EMPTY;
+        player->MoveTo(desiredPos);
+        gameWorld[desiredPos.x][desiredPos.y] = PLAYER;
+    }
+}
