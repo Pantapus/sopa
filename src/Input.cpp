@@ -1,5 +1,6 @@
 #include "Input.hpp"
 #include <windows.h>
+#include <winuser.h>
 
 Key Input::getKey() {
     for (int i = 0x31; i <= 0x33; i++) { // hex för 0-9 = 0x30-0x39
@@ -14,16 +15,16 @@ Key Input::getKey() {
             }
         }
     }
-    if (GetAsyncKeyState('W') & 0x8000) {
+    if ((GetAsyncKeyState('W') & 0x8000) || (GetAsyncKeyState(VK_UP) & 0x8000)) {
         return UP;
     }
-    if (GetAsyncKeyState('A') & 0x8000) {
+    if ((GetAsyncKeyState('A') & 0x8000) || (GetAsyncKeyState(VK_LEFT) & 0x8000)) {
         return LEFT;
     }
-    if (GetAsyncKeyState('S') & 0x8000) {
+    if ((GetAsyncKeyState('S') & 0x8000) || (GetAsyncKeyState(VK_DOWN) & 0x8000)) {
         return DOWN;
     }
-    if (GetAsyncKeyState('D') & 0x8000) {
+    if ((GetAsyncKeyState('D') & 0x8000) || (GetAsyncKeyState(VK_RIGHT) & 0x8000)) {
         return RIGHT;
     }
     if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
