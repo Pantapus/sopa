@@ -65,6 +65,7 @@ void Game::logic() {
             pause();
             break;
     }
+    compositor.moveEnemies();
 }
 
 void Game::pause() {

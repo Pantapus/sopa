@@ -2,6 +2,7 @@
 
 #include <array>
 #include <string>
+#include <vector>
 #include "Agent.hpp"
 
 enum cellState : char {
@@ -20,6 +21,8 @@ class Compositor {
         std::array<std::array<cellState, COLS>, ROWS> gameWorld;
         void setMap(std::string asset);
         void movePlayer(int x, int y);
+        void moveEnemies();
     private:
         Player* player;
+        std::vector<Enemy> enemies;
 };

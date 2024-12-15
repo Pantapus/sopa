@@ -29,6 +29,7 @@ void Compositor::setMap(std::string asset) {
                     break;
                 case '8':
                     gameWorld[row][col] = ENEMY;
+                    enemies.emplace_back(row, col);
                     break;
                 case '$':
                     gameWorld[row][col] = TREASURE;
@@ -49,5 +50,16 @@ void Compositor::movePlayer(int x, int y) {
         gameWorld[player->position.x][player->position.y] = EMPTY;
         player->MoveTo(desiredPos);
         gameWorld[desiredPos.x][desiredPos.y] = PLAYER;
+    }
+}
+
+void Compositor::moveEnemies() {
+    for (Enemy& enemy : enemies) {
+        Position desiredPos((enemy.position.x -1), enemy.position.y);
+        if (gameWorld[desiredPos.x][desiredPos.y] == EMPTY) {
+            gameWorld[enemy.position.x][enemy.position.y] = EMPTY;
+            enemy.MoveTo(desiredPos);
+            gameWorld[desiredPos.x][desiredPos.y] = ENEMY;
+        }
     }
 }
