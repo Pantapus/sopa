@@ -1,7 +1,10 @@
 #include "Compositor.hpp"
+#include "AStar.hpp"
+#include "Agent.hpp"
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <vector>
 
 void Compositor::setMap(std::string asset) {
     std::ifstream file("assets/" + asset + ".txt");
@@ -55,11 +58,14 @@ void Compositor::movePlayer(int x, int y) {
 
 void Compositor::moveEnemies() {
     for (Enemy& enemy : enemies) {
-        Position desiredPos((enemy.position.x -1), enemy.position.y);
-        if (gameWorld[desiredPos.x][desiredPos.y] == EMPTY) {
-            gameWorld[enemy.position.x][enemy.position.y] = EMPTY;
-            enemy.MoveTo(desiredPos);
-            gameWorld[desiredPos.x][desiredPos.y] = ENEMY;
+        std::vector<Position> path = aStar(enemy.position, player->position, gameWorld);
+        if (!path.empty()) {
+            Position nextStep = path[0];
+            if (gameWorld[nextStep.x][nextStep.y] == EMPTY) {
+                gameWorld[enemy.position.x][enemy.position.y] = EMPTY;
+                enemy.MoveTo(nextStep);
+                gameWorld[nextStep.x][nextStep.y] = ENEMY;
+            }
         }
     }
 }
