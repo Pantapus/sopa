@@ -15,6 +15,8 @@ int Menu::choiceMenu(std::string menu) {
                 return 1;
             case TWO:
                 return 2;
+            case THREE:
+                return 3;
             default:
                 break;
         }
