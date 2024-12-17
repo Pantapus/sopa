@@ -71,3 +71,22 @@ bool Compositor::moveEnemies() {
     }
     return true;
 }
+
+void Compositor::attemptTheft() {
+    if (gameWorld[player->position.x+1][player->position.y] == TREASURE) {
+        gameWorld[player->position.x+1][player->position.y] = EMPTY;
+        player->hasTreasure = true;
+    }
+    if (gameWorld[player->position.x-1][player->position.y] == TREASURE) {
+        gameWorld[player->position.x-1][player->position.y] = EMPTY;
+        player->hasTreasure = true;
+    }
+    if (gameWorld[player->position.x][player->position.y+1] == TREASURE) {
+        gameWorld[player->position.x][player->position.y+1] = EMPTY;
+        player->hasTreasure = true;
+    }
+    if (gameWorld[player->position.x][player->position.y-1] == TREASURE) {
+        gameWorld[player->position.x][player->position.y-1] = EMPTY;
+        player->hasTreasure = true;
+    }
+}

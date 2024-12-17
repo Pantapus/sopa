@@ -22,6 +22,7 @@ class Compositor {
         void setMap(std::string asset);
         void movePlayer(int x, int y);
         bool moveEnemies();
+        void attemptTheft();
     private:
         Player* player;
         std::vector<Enemy> enemies;

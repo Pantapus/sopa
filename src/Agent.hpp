@@ -22,4 +22,5 @@ class Enemy : public Agent {
 class Player : public Agent {
     public:
         Player(int x, int y) : Agent(x, y) {}
+        bool hasTreasure = false;
 };

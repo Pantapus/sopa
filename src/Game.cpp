@@ -49,7 +49,9 @@ void Game::logic() {
     Key playerAction = input->getKey();
     switch (playerAction) {
         case NO_KEY: break;
-        case ONE: break;
+        case ONE:
+            compositor->attemptTheft();
+            break;
         case TWO: break;
         case THREE: break;
         case UP:
