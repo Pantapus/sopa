@@ -9,6 +9,7 @@ Compositor compositor;
 ConsoleRender render(compositor);
 Input input;
 Menu menu(render, input);
+int iterationNumber = 0;
 
 Game::Game() {
     menu.startMenu();
@@ -17,29 +18,25 @@ Game::Game() {
 }
 
 void Game::gameLoop() {
-    constexpr int desiredFramedelay = 1000 / 20; //max 20 fps
-    auto lastTime = std::chrono::high_resolution_clock::now();
-
     try { compositor.setMap("map1"); } catch (const std::exception& e) {
         Sleep(1000);
         menu.error(e.what());
         running = false;
     }
-    
+    auto gameStart = std::chrono::high_resolution_clock::now();
     while(running) {
+        iterationNumber += 1;
         render.update();
         logic();
         auto currentTime = std::chrono::high_resolution_clock::now();
-        auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastTime).count();
-        if (elapsedTime < desiredFramedelay) {
-            Sleep(desiredFramedelay - elapsedTime);
+        auto totalTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - gameStart).count();
+        while ((float)iterationNumber/totalTime > 0.015) {
+            currentTime = std::chrono::high_resolution_clock::now();
+            totalTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - gameStart).count();
         }
-        lastTime = std::chrono::high_resolution_clock::now();
-        auto totalTime = std::chrono::duration_cast<std::chrono::milliseconds>(lastTime - currentTime).count() + elapsedTime;
-        render.printMessageAt(std::to_string(1000 / totalTime), 0, 25);
+        render.printMessageAt(std::to_string(((float)iterationNumber/totalTime)*1000), 0, 25);
     }
 }
-
 void Game::logic() {
     Key playerAction = input.getKey();
     switch (playerAction) {
@@ -65,7 +62,7 @@ void Game::logic() {
             pause();
             break;
     }
-    compositor.moveEnemies();
+    if (iterationNumber % 2 == 0) compositor.moveEnemies();
 }
 
 void Game::pause() {
