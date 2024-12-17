@@ -6,4 +6,5 @@
   $$$$$ $$$$$ $     $   $
          
          1: Return
-         2: Exit
+         2: Restart
+         3: Exit

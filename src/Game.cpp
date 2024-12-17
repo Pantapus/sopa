@@ -74,7 +74,8 @@ void Game::logic() {
 
 void Game::pause() {
     int choice = menu->choiceMenu("pauseMenu");
-    if (choice == 2) running = false;
+    if (choice == 2) gameLoop();
+    if (choice == 3) running = false;
 }
 
 void Game::gameOver() {
