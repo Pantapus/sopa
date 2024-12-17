@@ -21,7 +21,7 @@ class Compositor {
         std::array<std::array<cellState, COLS>, ROWS> gameWorld;
         void setMap(std::string asset);
         void movePlayer(int x, int y);
-        void moveEnemies();
+        bool moveEnemies();
     private:
         Player* player;
         std::vector<Enemy> enemies;

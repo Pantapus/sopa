@@ -7,8 +7,8 @@ void Menu::startMenu() {
     while (input.getKey() != ENTER) {}
 }
 
-int Menu::pauseMenu() {
-    render.Menu("pauseMenu");
+int Menu::choiceMenu(std::string menu) {
+    render.Menu(menu);
     while(true) {
         switch (input.getKey()) {
             case ONE:

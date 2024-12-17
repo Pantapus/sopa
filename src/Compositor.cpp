@@ -56,7 +56,7 @@ void Compositor::movePlayer(int x, int y) {
     }
 }
 
-void Compositor::moveEnemies() {
+bool Compositor::moveEnemies() {
     for (Enemy& enemy : enemies) {
         std::vector<Position> path = aStar(enemy.position, player->position, gameWorld);
         if (!path.empty()) {
@@ -66,6 +66,8 @@ void Compositor::moveEnemies() {
                 enemy.MoveTo(nextStep);
                 gameWorld[nextStep.x][nextStep.y] = ENEMY;
             }
+            if (gameWorld[nextStep.x][nextStep.y] == PLAYER) return false;
         }
     }
+    return true;
 }

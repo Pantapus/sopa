@@ -6,7 +6,7 @@ class Menu {
     public:
         Menu(ConsoleRender& render, Input& input);
         void startMenu();
-        int pauseMenu();
+        int choiceMenu(std::string);
         void error(const char*);
     private: 
         ConsoleRender& render;
