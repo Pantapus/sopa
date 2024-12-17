@@ -2,7 +2,9 @@
 #include "Menu.hpp"
 #include <chrono>
 #include <exception>
+#include <string>
 #include <synchapi.h>
+#include <thread>
 
 Compositor* compositor;
 ConsoleRender* render;
@@ -16,7 +18,7 @@ Game::Game() {
     gameLoop();
 }
 
-void Game::gameLoop() {
+void Game::gameLoop() {    
     compositor = new Compositor();
     render = new ConsoleRender(*compositor);
     input = new Input();
@@ -28,18 +30,17 @@ void Game::gameLoop() {
         menu->error(e.what());
         running = false;
     }
-    auto gameStart = std::chrono::high_resolution_clock::now();
+
+    constexpr std::chrono::milliseconds desiredFramedelay(1000/20); 
     while(running) {
+        auto lastTime = std::chrono::steady_clock::now();
+        auto nextFrameTime = lastTime + desiredFramedelay;
         iterationNumber += 1;
         render->update();
         logic();
-        auto currentTime = std::chrono::high_resolution_clock::now();
-        auto totalTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - gameStart).count();
-        while ((float)iterationNumber/totalTime > 0.015) {
-            currentTime = std::chrono::high_resolution_clock::now();
-            totalTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - gameStart).count();
-        }
-        render->printMessageAt(std::to_string(((float)iterationNumber/totalTime)*1000), 0, 25);
+        std::this_thread::sleep_until(nextFrameTime);
+        std::string fps = std::to_string(1000/(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - lastTime).count()));
+        render->printMessageAt(fps, 0, 25);
     }
     gameOver();
 }
