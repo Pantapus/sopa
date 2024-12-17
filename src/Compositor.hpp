@@ -11,6 +11,7 @@ enum cellState : char {
     PLAYER = '@',
     ENEMY = '8',
     TREASURE = '$',
+    HOME = 'O',
     UNKNOWN = '?'
 };
 
@@ -26,4 +27,5 @@ class Compositor {
     private:
         Player* player;
         std::vector<Enemy> enemies;
+        cellState standingOn = HOME;
 };

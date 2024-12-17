@@ -37,6 +37,9 @@ void Compositor::setMap(std::string asset) {
                 case '$':
                     gameWorld[row][col] = TREASURE;
                     break;
+                case 'O':
+                    gameWorld[row][col] = HOME;
+                    break;
                 default:
                     gameWorld[row][col] = UNKNOWN;
                     break;
@@ -49,8 +52,10 @@ void Compositor::setMap(std::string asset) {
 
 void Compositor::movePlayer(int x, int y) {
     Position desiredPos((player->position.x + x), (player->position.y + y));
-    if (gameWorld[desiredPos.x][desiredPos.y] == EMPTY) {
-        gameWorld[player->position.x][player->position.y] = EMPTY;
+    if (gameWorld[desiredPos.x][desiredPos.y] == EMPTY || gameWorld[desiredPos.x][desiredPos.y] == HOME) {
+        gameWorld[player->position.x][player->position.y] = standingOn;
+        standingOn = gameWorld[desiredPos.x][desiredPos.y];
+        
         player->MoveTo(desiredPos);
         gameWorld[desiredPos.x][desiredPos.y] = PLAYER;
     }
