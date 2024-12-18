@@ -73,7 +73,7 @@ void Game::logic() {
             pause();
             break;
     }
-    running = !win;
+    if (win) running = false;
     if (iterationNumber % 2 == 0) running = compositor->moveEnemies();
 }
 
