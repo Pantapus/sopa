@@ -10,11 +10,11 @@ Compositor* compositor;
 ConsoleRender* render;
 Input* input;
 Menu* menu;
-bool running;
+bool running = true;
+bool win = false;
 int iterationNumber = 0;
 
 Game::Game() {
-    running = true;
     gameLoop();
 }
 
@@ -55,16 +55,16 @@ void Game::logic() {
         case TWO: break;
         case THREE: break;
         case UP:
-            compositor->movePlayer(-1, 0);
+            win = compositor->movePlayer(-1, 0);
             break;
         case LEFT:
-            compositor->movePlayer(0, -1);
+            win = compositor->movePlayer(0, -1);
             break;
         case DOWN:
-            compositor->movePlayer(1, 0);
+            win = compositor->movePlayer(1, 0);
             break;
         case RIGHT:
-            compositor->movePlayer(0, 1);
+            win = compositor->movePlayer(0, 1);
             break;
         case ENTER: break;
         case SPACE: break;
@@ -72,6 +72,7 @@ void Game::logic() {
             pause();
             break;
     }
+    running = !win;
     if (iterationNumber % 2 == 0) running = compositor->moveEnemies();
 }
 
@@ -82,7 +83,8 @@ void Game::pause() {
 }
 
 void Game::gameOver() {
-    int choice = menu->choiceMenu("gameOver");
+    std::string whatMenu = win ? "winMenu" : "lossMenu";
+    int choice = menu->choiceMenu(whatMenu);
     if (choice == 1) {
         running = true;
         gameLoop();

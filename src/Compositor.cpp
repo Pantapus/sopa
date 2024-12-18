@@ -50,7 +50,7 @@ void Compositor::setMap(std::string asset) {
     }
 }
 
-void Compositor::movePlayer(int x, int y) {
+bool Compositor::movePlayer(int x, int y) {
     Position desiredPos((player->position.x + x), (player->position.y + y));
     if (gameWorld[desiredPos.x][desiredPos.y] == EMPTY || gameWorld[desiredPos.x][desiredPos.y] == HOME) {
         gameWorld[player->position.x][player->position.y] = standingOn;
@@ -59,6 +59,7 @@ void Compositor::movePlayer(int x, int y) {
         player->MoveTo(desiredPos);
         gameWorld[desiredPos.x][desiredPos.y] = PLAYER;
     }
+    return (standingOn == HOME && player->hasTreasure);
 }
 
 bool Compositor::moveEnemies() {
