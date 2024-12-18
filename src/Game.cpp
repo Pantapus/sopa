@@ -11,7 +11,7 @@ ConsoleRender* render;
 Input* input;
 Menu* menu;
 bool running = true;
-bool win = false;
+bool win;
 int iterationNumber = 0;
 
 Game::Game() {
@@ -19,6 +19,7 @@ Game::Game() {
 }
 
 void Game::gameLoop() {    
+    win = false;
     compositor = new Compositor();
     render = new ConsoleRender(*compositor);
     input = new Input();
