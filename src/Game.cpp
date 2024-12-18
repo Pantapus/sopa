@@ -40,8 +40,6 @@ void Game::gameLoop() {
         render->update();
         logic();
         std::this_thread::sleep_until(nextFrameTime);
-        std::string fps = std::to_string(1000/(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - lastTime).count()));
-        render->printMessageAt(fps, 0, 25);
     }
     gameOver();
 }
