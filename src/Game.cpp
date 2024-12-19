@@ -23,16 +23,19 @@ void Game::gameLoop() {
     render = new ConsoleRender(*compositor);
     input = new Input();
     menu = new Menu(*render, *input);
-    menu->startMenu();
-    std::string selectedMap = selectMap();
 
+    menu->startMenu();
+    
+    std::string selectedMap = selectMap();
     try { compositor->setMap(selectedMap); } catch (const std::exception& e) {
         Sleep(1000);
         menu->error(e.what());
         running = false;
     }
 
-    constexpr std::chrono::milliseconds desiredFramedelay(1000/20); 
+    render->Menu("fluff");
+
+    constexpr std::chrono::milliseconds desiredFramedelay(1000/15); 
     while(running) {
         auto lastTime = std::chrono::steady_clock::now();
         auto nextFrameTime = lastTime + desiredFramedelay;
@@ -45,6 +48,8 @@ void Game::gameLoop() {
 }
 
 void Game::logic() {
+    if (iterationNumber % 2 == 0) running = compositor->moveEnemies();
+
     Key playerAction = input->getKey();
     switch (playerAction) {
         case NO_KEY: break;
@@ -72,13 +77,13 @@ void Game::logic() {
             break;
     }
     if (win) running = false;
-    if (iterationNumber % 2 == 0) running = compositor->moveEnemies();
 }
 
 void Game::pause() {
     int choice = menu->choiceMenu("pauseMenu");
     if (choice == 2) gameLoop();
     if (choice == 3) running = false;
+    render->Menu("fluff");
 }
 
 std::string Game::selectMap() {
