@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 class Game {
     public:
         Game();
@@ -8,4 +9,5 @@ class Game {
         void logic();
         void pause();
         void gameOver();
+        std::string selectMap();
 };

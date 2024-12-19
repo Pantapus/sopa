@@ -2,7 +2,6 @@
 #include "Menu.hpp"
 #include <chrono>
 #include <exception>
-#include <string>
 #include <synchapi.h>
 #include <thread>
 
@@ -25,8 +24,9 @@ void Game::gameLoop() {
     input = new Input();
     menu = new Menu(*render, *input);
     menu->startMenu();
+    std::string selectedMap = selectMap();
 
-    try { compositor->setMap("map1"); } catch (const std::exception& e) {
+    try { compositor->setMap(selectedMap); } catch (const std::exception& e) {
         Sleep(1000);
         menu->error(e.what());
         running = false;
@@ -79,6 +79,16 @@ void Game::pause() {
     int choice = menu->choiceMenu("pauseMenu");
     if (choice == 2) gameLoop();
     if (choice == 3) running = false;
+}
+
+std::string Game::selectMap() {
+    int choice = menu->choiceMenu("selectMap");
+    switch (choice) {
+        case 1: return "map1";
+        case 2: return "map2";
+        case 3: return "map3";
+    }
+    return "";
 }
 
 void Game::gameOver() {
